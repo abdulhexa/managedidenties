@@ -57,7 +57,18 @@ jobs:
       id: fmt
       run: terraform fmt -check
     
-    # tflint plugin
+     
+    # Run a Terraform validate
+    - name: Terraform validate
+      id: validate
+      if: success() || failure()
+      env:
+        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      run: terraform validate -no-color
+   
+   # tflint plugin
     - uses: actions/cache@v2
       name: Cache plugin dir
       with:
@@ -83,16 +94,7 @@ jobs:
     - name: Run TFLint
       run: tflint -f compact
       
-    # Run a Terraform validate
-    - name: Terraform validate
-      id: validate
-      if: success() || failure()
-      env:
-        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      run: terraform validate -no-color
-
+      
     # Run a Terraform plan
     - name: Terraform plan
       id: plan
