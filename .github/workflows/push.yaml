@@ -54,10 +54,10 @@ jobs:
     - name: Setup TFLint
       # You may pin to the exact commit or the version.
       # uses: terraform-linters/setup-tflint@ba6bb2989f94daf58a4cc6eac2c1ca7398a678bf
-      uses: terraform-linters/setup-tflint@v2
+      uses: terraform-linters/setup-tflint@v3.0.0
       with:
-         # TFLint version to install
-         tflint_version: latest
+        # TFLint version to install
+        tflint_version: latest
          
     - name: Show version
       run: tflint --version
