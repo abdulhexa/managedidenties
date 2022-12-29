@@ -15,7 +15,7 @@ permissions:
       contents: read
 jobs: 
   pr-infra-check:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
