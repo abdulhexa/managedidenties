@@ -37,6 +37,7 @@ jobs:
     - name: 'Run az commands'
       run: |
         az account show
+
     # Run Terraform init
     - name: Terraform Init
       id: init
@@ -101,5 +102,3 @@ jobs:
             repo: context.repo.repo,
             body: output
           })
-Footer
-© 2022 GitHub, Inc.
